@@ -1,20 +1,108 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
-  <title>Hello Adonis</title>
+  <meta charset="UTF-8">
+  <title></title>
   {{ style('style') }}
 </head>
+
 <body>
-  <section>
-    <div class="logo"></div>
-    <div class="title"></div>
-    <div class="subtitle">
-      <p>AdonisJs simplicity will make you feel confident about your code</p>
-      <p>
-        Don't know where to start? Read the <a href="https://adonisjs.com/docs">documentation</a>.
-      </p>
+
+  @set('username', request.input('username'))
+
+  <div class="chat-container">
+    <div class="chat-wrapper">
+      @if(username)
+      <div class="header">
+        <h2>
+          <span>Hello {{ username }}!</span>
+          <span class="connected-users"></span>
+          <span class="connection-status"></span>
+        </h2>
+      </div>
+      <div class="messages">
+      </div>
+      <div class="input-wrapper">
+        <input type="text" id="message" placeholder="Enter message" autofocus=1>
+      </div>
+      @else
+      <div class="onboard">
+        <form action="/" method="GET">
+          <input type="text" id="name" name="username" placeholder="Enter your name" autofocus=1>
+        </form>
+      </div>
+      @endif
     </div>
-  </section>
+  </div>
+
+
+
+  {{ script('https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/6.26.0/polyfill.min.js') }}
+  {{ script('https://unpkg.com/@adonisjs/websocket-client@1.0.9/dist/Ws.browser.js') }}
+  {{ script('https://unpkg.com/jquery@3.3.1/dist/jquery.js') }}
+
+
+
+  <script>
+    window.username = '{{ username }}';
+
+    let ws = null
+
+    $(function () {
+      if (window.username) {
+        startChat()
+      }
+    })
+
+    function startChat() {
+      console.log('aw')
+      ws = adonis.Ws().connect()
+
+      ws.on('open', () => {
+        $('.connection-status').addClass('connected')
+        subscribeToChannel()
+      })
+
+      ws.on('error', () => {
+        $('.connection-status').removeClass('connected')
+      })
+    }
+
+
+    function subscribeToChannel() {
+
+      const chat = ws.subscribe('chat')
+
+      chat.on('error', () => {
+        $('.connection-status').removeClass('connected')
+      })
+
+      chat.on('message', function (message) {
+        console.log(message.username, message.body)
+      })
+
+    }
+
+
+    $('#message').keyup(function (e) {
+      if (e.which === 13) {
+        e.preventDefault()
+
+        const message = $(this).val()
+        $(this).val('')
+
+        ws.getSubscription('chat').emit('message', {
+          username: window.username,
+          body: message,
+          id:'teste'
+        })
+        return
+      }
+    })
+
+  </script>
+
 </body>
+
 </html>
