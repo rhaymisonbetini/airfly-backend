@@ -11,9 +11,6 @@
 - Lucid ORM
 - Migrations and seeds
 
-
-![](https://img.shields.io/github/stars/pandao/editor.md.svg) ![](https://img.shields.io/github/forks/pandao/editor.md.svg) ![](https://img.shields.io/github/tag/pandao/editor.md.svg) ![](https://img.shields.io/github/release/pandao/editor.md.svg) ![](https://img.shields.io/github/issues/pandao/editor.md.svg) ![](https://img.shields.io/bower/v/editor.md.svg)
-
 ###### AirFlyBackend
 
 Api para consudo de tickets em duas aplicações mobile. Uma para o usuário que ira realizar a viagem e outra para o funcionário do que ira fazer a leitura e a conferencia atraves da leitura de QRDcode
