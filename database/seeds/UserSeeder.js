@@ -30,8 +30,8 @@ class UserSeeder {
     await Tickets.create({
       dia_viagem: '22/11/2020',
       hora_viagem: '18:45',
-      origem: 'Aracaju - Sergipe',
-      destino: 'Vitória - Espirito Santo',
+      origem: 'Aracaju - SE',
+      destino: 'Vitória - ES',
       aeronave: 'Airbus A320',
       codigo: '29140669',
       imagem_logo: 'https://image.freepik.com/fotos-gratis/aviao-decolando-do-aeroporto_37416-3.jpg',
@@ -42,8 +42,8 @@ class UserSeeder {
     await Tickets.create({
       dia_viagem: '25/12/2020',
       hora_viagem: '20:00',
-      origem: 'Vitória - Espirito Santo',
-      destino: 'Aracaju - Sergipe',
+      origem: 'Vitória - ES',
+      destino: 'Aracaju - SE',
       aeronave: 'Boeing 787',
       codigo: '789214667',
       imagem_logo: 'https://www.midiamax.com.br/wp-content/uploads/2017/04/destaque_aviao.png',
