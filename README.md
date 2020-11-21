@@ -4,6 +4,7 @@
 
 - Adonis - 4.1.0
 - Didver DB - mysql  2.1.8
+- WebSocket
 - Bodyparser
 - Authentication
 - CORS
@@ -13,7 +14,7 @@
 
 ###### AirFlyBackend
 
-Api para consumo de tickets em duas aplicações mobile. Uma para o usuário que ira realizar a viagem e outra para o funcionário do que ira fazer a leitura e a conferencia atraves de um QRDcode
+Api para consumo de tickets em duas aplicações mobile. Uma para o usuário que ira realizar a viagem e outra para o funcionário do que ira fazer a leitura e a conferencia atraves de um QRcode
 
 ### Instalação
 
