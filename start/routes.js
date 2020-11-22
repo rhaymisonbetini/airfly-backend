@@ -12,7 +12,7 @@ Route.get('/', ({ view }) => {
 
 Route.post('/login', 'AuthController.login')
 
-
+Route.get('/count','TicketController.countMyTickets');
 Route.get('/tickets', 'TicketController.listTickets')
 Route.get('/ticket/:ticketId', 'TicketController.getTicketById')
 Route.get('/user-ticket/:ticketId', 'TicketController.getUserTicket')

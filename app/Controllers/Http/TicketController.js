@@ -4,6 +4,24 @@ const TicketsRepository = use("App/Repositories/TicketsRporitosy");
 
 class TicketController {
 
+
+    async countMyTickets({ request, response }) {
+        try {
+
+            let id = request.header('id');
+            let ticketRepository = new TicketsRepository();
+            let total = await ticketRepository.totalUserd(id);
+            let free = await ticketRepository.totalFree(id);
+
+            return response.status(200).send({ total, free })
+
+        } catch (e) {
+            console.log(e);
+            return response.status(500).send(e)
+        }
+    }
+
+
     async listTickets({ request, response }) {
 
         try {
