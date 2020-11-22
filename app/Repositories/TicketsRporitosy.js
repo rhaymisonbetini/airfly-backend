@@ -14,11 +14,11 @@ class TicketsRporitosy {
 
     async totalFree(id) {
         let tickets = await Tickets.query()
-        .where('user_id', id)
-        .where('is_used', false)
-        .getCount();
+            .where('user_id', id)
+            .where('is_used', false)
+            .getCount();
 
-    return tickets
+        return tickets
 
     }
 
@@ -49,10 +49,9 @@ class TicketsRporitosy {
         return userTicket;
     }
 
-    async checkTicket(ticket) {
-
+    async checkTicket(code) {
         let check = await Tickets.query()
-            .where('id', ticket)
+            .where('codigo', code)
             .update({
                 is_used: true
             })
@@ -60,6 +59,24 @@ class TicketsRporitosy {
     }
 
 
+    async getUserByQrCode(code) {
+        let userTicket = await Tickets.query()
+            .where('codigo', code)
+            .with('user', (builder) => {
+                builder.setVisible(['id', 'email', 'username', 'photo'])
+            })
+            .first();
+        return userTicket;
+    }
+
+    async verifyConsumer(code) {
+        let tickets = await Tickets.query()
+            .where('codigo', code)
+            .where('is_used', true)
+            .first();
+        return tickets;
+
+    }
 }
 
 module.exports = TicketsRporitosy

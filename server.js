@@ -31,6 +31,6 @@ if (cluster.isMaster) {
 
 new Ignitor(require('@adonisjs/fold'))
   .appRoot(__dirname)
-  .wsServer() // boot the WebSocket server
+  .wsServer() 
   .fireHttpServer()
   .catch(console.error)

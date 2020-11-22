@@ -11,12 +11,19 @@ Route.get('/', ({ view }) => {
 })
 
 Route.post('/login', 'AuthController.login')
+Route.post('/login-fiscal', 'AuthController.loginFiscal')
 
-Route.get('/count','TicketController.countMyTickets');
+Route.get('/count', 'TicketController.countMyTickets');
 Route.get('/tickets', 'TicketController.listTickets')
 Route.get('/ticket/:ticketId', 'TicketController.getTicketById')
 Route.get('/user-ticket/:ticketId', 'TicketController.getUserTicket')
 Route.post('/check-ticket', 'TicketController.checkTicket')
+
+Route.get('/verify-consumer/:code', 'TicketController.verifyConsumer');
+
+
+//roteamento do fiscal
+Route.get('/get-user-ticket-by-qrcode/:code', 'TicketController.getUserByQrCode');
 
 Route.group(() => {
 }).middleware('authenticator');
