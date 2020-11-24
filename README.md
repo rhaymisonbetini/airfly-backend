@@ -3,7 +3,7 @@
 ### AIRFLY - API
 
 - Adonis - 4.1.0
-- Didver DB - mysql  2.1.8
+- Driver DB - mysql  2.1.8
 - WebSocket
 - Bodyparser
 - Authentication
