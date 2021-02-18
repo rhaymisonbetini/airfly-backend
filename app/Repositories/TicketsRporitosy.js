@@ -3,6 +3,10 @@ const Tickets = use("App/Models/Ticket")
 
 class TicketsRporitosy {
 
+    async allTickets(){
+        return await Tickets.all();
+    }
+
     async totalUserd(id) {
 
         let tickets = await Tickets.query()

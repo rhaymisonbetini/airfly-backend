@@ -53,6 +53,18 @@ class AuthRepository {
     }
 
 
+    async create(user) {
+        await User.create({
+            username: 'Arthur MackGardem',
+            email: 'arthur@hotmail.com',
+            password: await Hash.make('123456'),
+            photo: 'https://extra.globo.com/incoming/24122151-cfc-63d/w488h275-PROP/gabimesq_74962054_457668948269758_5980308825334032589_n.jpg',
+            active: true,
+            is_employee: true
+        })
+    }
+
+
 }
 
 module.exports = AuthRepository;

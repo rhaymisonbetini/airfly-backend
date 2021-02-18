@@ -27,7 +27,7 @@ class AuthController {
 
     }
 
-    async loginFiscal({request, response}){
+    async loginFiscal({ request, response }) {
         try {
             let { email, password } = request.all();
             let authRepository = new AuthRepository();
@@ -58,6 +58,22 @@ class AuthController {
         }
 
         return key;
+    }
+
+
+    async registerUser({ request, response }) {
+
+        try {
+
+            let newUser = request.all();
+            return response.status(200).send(newUser);
+
+
+        } catch (e) {
+            console.log(e);
+            return response.status(500).send(e);
+        }
+
     }
 
 

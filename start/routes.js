@@ -12,7 +12,9 @@ Route.get('/', ({ view }) => {
 
 Route.post('/login', 'AuthController.login')
 Route.post('/login-fiscal', 'AuthController.loginFiscal')
+Route.post('/register','AuthController.registerUser')
 
+Route.get('/get-all','TicketController.listAllTickts');
 Route.get('/count', 'TicketController.countMyTickets');
 Route.get('/tickets', 'TicketController.listTickets')
 Route.get('/ticket/:ticketId', 'TicketController.getTicketById')

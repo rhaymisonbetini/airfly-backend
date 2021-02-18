@@ -34,12 +34,28 @@ class TicketController {
                 return response.status(200).send({ message: 'NOT_FOUND' })
             }
 
-
         } catch (e) {
             console.log(e);
             return response.status(500).send(e)
         }
 
+    }
+
+    async listAllTickts({response}){
+        try {
+
+            let ticketRepository = new TicketsRepository();
+            let tickets = await ticketRepository.allTickets();
+            if (tickets) {
+                return response.status(200).send(tickets);
+            } else {
+                return response.status(200).send({ message: 'NOT_FOUND' })
+            }
+
+        } catch (e) {
+            console.log(e);
+            return response.status(500).send(e)
+        }
     }
 
     async getTicketById({ params, response }) {
