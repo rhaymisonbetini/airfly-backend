@@ -10,21 +10,27 @@ Route.get('/', ({ view }) => {
     return view.render('welcome')
 })
 
+
+//rotas web
+Route.post('/register','AuthController.registerUser')
+Route.get('/get-all','TicketController.listAllTickts');
+Route.get('/count-all-tickets','TicketController.countAllTickets');
+Route.put('/update-ticket','TicketController.updateTicket');
+Route.delete('/delete-ticket/:id','TicketController.deleteTicket');
+
+//rotas do aplicativo
+
+/*rotas  cliente */
 Route.post('/login', 'AuthController.login')
 Route.post('/login-fiscal', 'AuthController.loginFiscal')
-Route.post('/register','AuthController.registerUser')
-
-Route.get('/get-all','TicketController.listAllTickts');
 Route.get('/count', 'TicketController.countMyTickets');
 Route.get('/tickets', 'TicketController.listTickets')
 Route.get('/ticket/:ticketId', 'TicketController.getTicketById')
 Route.get('/user-ticket/:ticketId', 'TicketController.getUserTicket')
 Route.post('/check-ticket', 'TicketController.checkTicket')
-
 Route.get('/verify-consumer/:code', 'TicketController.verifyConsumer');
 
-
-//roteamento do fiscal
+/*rotas  cliente */
 Route.get('/get-user-ticket-by-qrcode/:code', 'TicketController.getUserByQrCode');
 
 Route.group(() => {

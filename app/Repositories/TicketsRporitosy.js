@@ -3,8 +3,12 @@ const Tickets = use("App/Models/Ticket")
 
 class TicketsRporitosy {
 
-    async allTickets(){
+    async allTickets() {
         return await Tickets.all();
+    }
+
+    async countAllTickets() {
+        return await Tickets.getCount();
     }
 
     async totalUserd(id) {
@@ -80,6 +84,30 @@ class TicketsRporitosy {
             .first();
         return tickets;
 
+    }
+
+    async updateTicket(ticket) {
+        return await Tickets.query().where('id', ticket.id).update({
+            origem: ticket.origem,
+            destino: ticket.destino,
+            dia_viagem: ticket.dia
+        })
+
+    }
+
+    async deleteTicketById(id) {
+        const ticket = await Tickets.find(id);
+        await ticket.delete();
+        return ticket;
+    }
+
+    async getActualDate() {
+        var today = new Date();
+        var dd = String(today.getDate()).padStart(2, '0');
+        var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+        var yyyy = today.getFullYear();
+        today = mm + '/' + dd + '/' + yyyy;
+        return today;
     }
 }
 

@@ -41,11 +41,28 @@ class TicketController {
 
     }
 
-    async listAllTickts({response}){
+    async listAllTickts({ response }) {
         try {
 
             let ticketRepository = new TicketsRepository();
             let tickets = await ticketRepository.allTickets();
+            if (tickets) {
+                return response.status(200).send(tickets);
+            } else {
+                return response.status(200).send({ message: 'NOT_FOUND' })
+            }
+
+        } catch (e) {
+            console.log(e);
+            return response.status(500).send(e)
+        }
+    }
+
+    async countAllTickets({ response }) {
+        try {
+
+            let ticketRepository = new TicketsRepository();
+            let tickets = await ticketRepository.countAllTickets();
             if (tickets) {
                 return response.status(200).send(tickets);
             } else {
@@ -159,6 +176,45 @@ class TicketController {
             return response.status(500).send(e)
         }
 
+    }
+
+    async updateTicket({ request, response }) {
+
+        try {
+
+            let ticket = request.all();
+            let ticketRepository = new TicketsRepository();
+            let updatedTicket = await ticketRepository.updateTicket(ticket.payload);
+            if (updatedTicket) {
+                let newTicket = await ticketRepository.getTicketById(ticket.payload.id);
+                return response.status(200).send(newTicket);
+            }
+
+
+        } catch (e) {
+            console.log(e);
+            return response.status(500).send(e);
+        }
+
+    }
+
+
+    async deleteTicket({ response, params }) {
+        try {
+
+            let id = params.id;
+            let ticketRepository = new TicketsRepository();
+            let ticket = await ticketRepository.deleteTicketById(id);
+            if (ticket) {
+                return response.status(200).send(ticket);
+            } else {
+                return response.status(200).send({ message: 'NOT_FOUND' })
+            }
+
+        } catch (e) {
+            console.log(e);
+            return response.status(500).send(e);
+        }
     }
 
 
