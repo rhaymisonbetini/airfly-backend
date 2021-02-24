@@ -86,6 +86,25 @@ class TicketsRporitosy {
 
     }
 
+    async createTicketWeb(ticketReived){
+
+       let ticket = ticketReived.payload;
+
+        let newTicket = await Tickets.create({
+            dia_viagem: ticket.dia,
+            hora_viagem: ticket.time,
+            origem: ticket.origem,
+            destino: ticket.destino,
+            aeronave: 'Airbus A320',
+            codigo: Math.floor( Math.random() * 99999999999),
+            imagem_logo: 'https://image.freepik.com/fotos-gratis/aviao-decolando-do-aeroporto_37416-3.jpg',
+            user_id: ticket.user,
+            is_used: false
+        })
+
+        return newTicket;
+    }
+
     async updateTicket(ticket) {
         return await Tickets.query().where('id', ticket.id).update({
             origem: ticket.origem,

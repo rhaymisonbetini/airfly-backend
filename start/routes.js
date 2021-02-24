@@ -13,8 +13,12 @@ Route.get('/', ({ view }) => {
 
 //rotas web
 Route.post('/register','AuthController.registerUser')
+
+Route.get('/get-all-users', 'UserController.getAllUsers')
+
 Route.get('/get-all','TicketController.listAllTickts');
 Route.get('/count-all-tickets','TicketController.countAllTickets');
+Route.post('/create-ticket-web', 'TicketController.createTicketWeb');
 Route.put('/update-ticket','TicketController.updateTicket');
 Route.delete('/delete-ticket/:id','TicketController.deleteTicket');
 

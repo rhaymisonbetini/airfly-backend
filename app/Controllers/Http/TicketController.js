@@ -178,6 +178,23 @@ class TicketController {
 
     }
 
+
+    async createTicketWeb({ request, response }) {
+
+        try {
+
+            let newTicket = request.all();
+            let ticketRepository = new TicketsRepository();
+            let generatedTicket = await ticketRepository.createTicketWeb(newTicket);
+            return response.status(200).send(generatedTicket);
+
+        } catch (e) {
+            console.log(e);
+            return response.status(500).send(e);
+        }
+
+    }
+
     async updateTicket({ request, response }) {
 
         try {
