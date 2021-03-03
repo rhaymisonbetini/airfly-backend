@@ -1,7 +1,6 @@
 'use strict'
 
 /** @type {import('@adonisjs/lucid/src/Factory')} */
-const Factory = use('Factory')
 const User = use("App/Models/User");
 const Tickets = use("App/Models/Ticket");
 const Hash = use("Hash")

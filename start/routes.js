@@ -16,7 +16,7 @@ Route.get('/', ({ view }) => {
 Route.post('/register', 'AuthController.registerUser')
 Route.get('/get-all-users', 'UserController.getAllUsers')
 Route.get('/auth-user/:user', 'UserController.getAuthUser')
-Route.post('/update-user-profile','UserController.updateUserPrifle')
+Route.post('/update-user-profile', 'UserController.updateUserPrifle')
 
 Route.get('/get-all', 'TicketController.listAllTickts');
 Route.get('/count-all-tickets', 'TicketController.countAllTickets');
@@ -24,8 +24,10 @@ Route.post('/create-ticket-web', 'TicketController.createTicketWeb');
 Route.put('/update-ticket', 'TicketController.updateTicket');
 Route.delete('/delete-ticket/:id', 'TicketController.deleteTicket');
 
+Route.get('/get-banners', 'BannerController.getBanners');
+
 //rotas de imagem
-Route.get('/image/:path', async({response,params})=>{// where :file is file name
+Route.get('/image/:path', async ({ response, params }) => {// where :file is file name
     return response.download(Helpers.publicPath(`image/${params.path}`))
 })
 
