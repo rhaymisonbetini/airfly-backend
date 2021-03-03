@@ -182,6 +182,7 @@ class TicketController {
     async createTicketWeb({ request, response }) {
 
         try {
+            console.log(request)
 
             let newTicket = request.all();
             let ticketRepository = new TicketsRepository();
@@ -201,9 +202,9 @@ class TicketController {
 
             let ticket = request.all();
             let ticketRepository = new TicketsRepository();
-            let updatedTicket = await ticketRepository.updateTicket(ticket.payload);
+            let updatedTicket = await ticketRepository.updateTicket(ticket);
             if (updatedTicket) {
-                let newTicket = await ticketRepository.getTicketById(ticket.payload.id);
+                let newTicket = await ticketRepository.getTicketById(ticket.id);
                 return response.status(200).send(newTicket);
             }
 

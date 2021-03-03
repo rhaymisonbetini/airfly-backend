@@ -32,6 +32,10 @@ class UserController {
     }
 
     async updateUserPrifle({ request, response }) {
+
+
+        console.log(request.header('Authorization'))
+
         try {
 
             let file = request.file('file', { types: ['image'] });
@@ -56,12 +60,20 @@ class UserController {
 
 
         } catch (e) {
-            console.log(e);
             return response.status(500).send(e);
         }
     }
 
-    async
+    async getUserPhotos({ params, response }) {
+
+        try {
+
+        } catch (e) {
+            console.log(e);
+            return response.status(500).send(e)
+        }
+
+    }
 
 }
 
